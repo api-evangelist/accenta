@@ -1,0 +1,66 @@
+generated: '2026-08-17'
+method: probed
+source: live GET of /.well-known/* on every Accenta host named in apis.yml
+note: >-
+  Every probed path missed. www.accenta.ai is a WordPress site that answers any unknown path with its
+  own HTML 404 page; the effiPilot platform hosts (app./demo./api.accenta.ai, all served by the same
+  wildcard *.accenta.ai origin) return an nginx 403 for the whole /.well-known/ prefix. No
+  security.txt, no OIDC or OAuth authorization-server metadata, no api-catalog, no ai-plugin and no
+  A2A agent card is served anywhere on accenta.ai. NO WellKnown or SecurityTxt pointer is emitted in
+  apis.yml — this file records an absence, not a presence.
+hosts:
+- host: https://www.accenta.ai
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://app.accenta.ai
+  documents:
+  - path: /.well-known/security.txt
+    status: 403
+  - path: /.well-known/openid-configuration
+    status: 403
+  - path: /.well-known/oauth-authorization-server
+    status: 403
+  - path: /.well-known/oauth-protected-resource
+    status: 403
+  - path: /.well-known/api-catalog
+    status: 403
+  - path: /.well-known/ai-plugin.json
+    status: 403
+  - path: /.well-known/agent-card.json
+    status: 403
+  - path: /.well-known/agent.json
+    status: 403
+- host: https://demo.accenta.ai
+  documents:
+  - path: /.well-known/security.txt
+    status: 403
+  - path: /.well-known/openid-configuration
+    status: 403
+  - path: /.well-known/oauth-authorization-server
+    status: 403
+  - path: /.well-known/oauth-protected-resource
+    status: 403
+  - path: /.well-known/api-catalog
+    status: 403
+  - path: /.well-known/ai-plugin.json
+    status: 403
+  - path: /.well-known/agent.json
+    status: 403
+  - path: /.well-known/agent-card.json
+    status: 403
+files: []

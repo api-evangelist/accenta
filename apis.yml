@@ -1,19 +1,63 @@
 aid: accenta
 name: Accenta
-description: 'Accenta is a company surfaced as a portfolio company of serena and added to the API Evangelist
-  network as a stub for enrichment. Sector: ai-data. This profile is a lead awaiting the enrichment pipeline.'
+description: 'Accenta is a French energy and carbon performance company for real estate portfolios,
+  founded in 2016 and headquartered in Boulogne-Billancourt. It combines AI-driven building control
+  (an intelligent building management system plus an Accenta Communication Box for sites with no BMS)
+  with low-carbon heat and cold production built on shallow geothermal energy, inter-seasonal
+  geostorage, heat pumps and solar, and it wraps the whole package in audit, design, build, operate,
+  financing and performance-contract services. Accenta says it manages roughly 10 million square
+  metres of real estate for owners such as Airbus, Prologis, Icade, Redevco and Decathlon, targeting
+  energy reductions up to 80% and CO2 reductions up to 95%. Its software platform is effiPilot,
+  acquired in 2020, delivered as a per-customer tenant on accenta.ai with a web application, an
+  Android app and an HTTP API whose reference documentation sits behind the customer login.'
 url: https://raw.githubusercontent.com/api-evangelist/accenta/refs/heads/main/apis.yml
+image: https://www.accenta.ai/app/uploads/2020/09/og_fb.jpg
 x-type: company
 x-source: serena-portfolio
-x-tier: stub
-x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-08-17'
 modified: '2026-08-17'
 tags:
 - Company
 - Ai Data
-apis: []
+- Energy
+- Buildings
+- Smart Buildings
+- Building Management
+- Geothermal
+- Decarbonization
+- Sustainability
+- Energy Management
+- Artificial Intelligence
+- Real Estate
+- IoT
+- France
+apis:
+- name: effiPilot Platform API
+  description: 'The HTTP API behind Accenta''s effiPilot building-energy platform. It is an
+    RPC-style JSON surface — requests take the form /api/method/<methodName> — served per customer
+    tenant from the wildcard accenta.ai host (nginx + PHP 8.0.30), with session-cookie
+    authentication established through the platform login. The API reference is published by
+    Accenta as "documentation API effiPilot" at /api/doc on the tenant host, but that route is only
+    routed for an authenticated session; anonymous requests return {"message":"Route not found"}.
+    One anonymous method is reachable and was verified: /api/method/brandConf, which returns the
+    tenant brand, legal-entity, consent and colour configuration as JSON. No OpenAPI, Swagger,
+    GraphQL or MCP contract is published on any Accenta host.'
+  humanURL: https://app.accenta.ai/login/?redirectTo=api%2Fdoc
+  baseURL: https://app.accenta.ai/api/
+  tags:
+  - Building Management
+  - Energy Management
+  - Smart Buildings
+  properties:
+  - type: Authentication
+    url: authentication/accenta-authentication.yml
+  - type: Conventions
+    url: conventions/accenta-conventions.yml
+  - type: ErrorCatalog
+    url: errors/accenta-error-codes.yml
+  - type: RateLimits
+    url: rate-limits/accenta-rate-limits.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -22,3 +66,80 @@ maintainers:
 common:
 - type: Website
   url: https://www.accenta.ai/
+- type: WebsiteFrench
+  url: https://www.accenta.ai/
+- type: Login
+  url: https://app.accenta.ai/login/
+- type: Support
+  url: https://www.accenta.ai/en/contact-us/
+- type: Blog
+  url: https://www.accenta.ai/articles/
+- type: BlogRSS
+  url: https://www.accenta.ai/feed/
+- type: Press
+  url: https://www.accenta.ai/en/press/
+- type: CaseStudies
+  url: https://www.accenta.ai/en/projects/
+- type: About
+  url: https://www.accenta.ai/en/about/
+- type: Careers
+  url: https://www.accenta.ai/jobs/
+- type: LegalNotice
+  url: https://www.accenta.ai/mentions-legales/
+- type: PrivacyPolicy
+  url: https://www.accenta.ai/politique-de-confidentialite/
+- type: TermsOfService
+  url: https://storage.sbg.cloud.ovh.net/v1/AUTH_3d9cbc20c59c4c77a70475ce27cd4ecb/Images%20publiques%20effiPilot/Contrat_Licence_Utilisateur_Final_v200_20260602.pdf
+- type: Compliance
+  url: https://storage.sbg.cloud.ovh.net/v1/AUTH_3d9cbc20c59c4c77a70475ce27cd4ecb/Images%20publiques%20effiPilot/RGPD_Collecte_et_utilisation_donnees_personnelles_v200_20260602.pdf
+- type: LinkedIn
+  url: https://www.linkedin.com/company/accenta-ai
+- type: Authentication
+  url: authentication/accenta-authentication.yml
+- type: Conventions
+  url: conventions/accenta-conventions.yml
+- type: ErrorCatalog
+  url: errors/accenta-error-codes.yml
+- type: Conformance
+  url: conformance/accenta-conformance.yml
+- type: Lifecycle
+  url: lifecycle/accenta-lifecycle.yml
+- type: Packages
+  url: packages/accenta-packages.yml
+- type: Plans
+  url: plans/accenta-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/accenta-rate-limits.yml
+- type: DomainSecurity
+  url: security/accenta-domain-security.yml
+- type: LLMsTxt
+  url: llms/accenta-llms.txt
+x-enrichment:
+  date: '2026-08-17'
+  status: minimal
+  artifacts_added: 11
+  pass: local-v1
+x-coverage:
+  state: gated
+  reason: customer-only-docs
+  detail: >-
+    Accenta's effiPilot API reference is real and is Accenta's own — the login application at
+    app.accenta.ai explicitly offers redirectTo=api%2Fdoc and search engines still index the page
+    title "documentation API effiPilot 2.16.3" — but the /api/doc route is only served to an
+    authenticated tenant session, so an anonymous GET returns {"message":"Route not found"} and no
+    machine-readable contract of any kind (OpenAPI, GraphQL, MCP, AsyncAPI, agent card, or any
+    /.well-known/ document) is reachable on www.accenta.ai, app.accenta.ai or demo.accenta.ai.
+  evidence:
+  - url: https://app.accenta.ai/api/doc
+    status: 404
+  - url: https://app.accenta.ai/api/method/brandConf
+    status: 200
+  - url: https://app.effipilot.com/api/doc/
+    status: 301
+  - url: https://app.accenta.ai/api/v3/api-docs
+    status: 404
+  - url: https://www.accenta.ai/.well-known/agent-card.json
+    status: 404
+  - url: https://app.accenta.ai/.well-known/security.txt
+    status: 403
+  checked: '2026-08-17'

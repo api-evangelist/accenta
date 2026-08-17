@@ -1,0 +1,99 @@
+generated: '2026-08-17'
+method: probed
+source: live probes of https://app.accenta.ai/api/ + the public effiPilot login application bundle
+note: >-
+  Derived from observed runtime behaviour, not from a published style guide — Accenta publishes no
+  public API design document, and the effiPilot API reference sits behind the customer login. Only
+  the conventions listed below were actually observed; everything else is recorded as unknown rather
+  than guessed.
+api_style:
+  shape: rpc-over-http
+  pattern: /api/method/<methodName>
+  tenant_scoped_pattern: /api/<tenant>/method/<methodName>
+  note: >-
+    Not a resource-oriented REST surface. Method names are camelCase verbs/nouns (brandConf,
+    session, logout, setLang, lostLogin), and the tenant segment appears between /api/ and /method/
+    on tenant-scoped calls. Each customer estate is a separate host on the wildcard *.accenta.ai
+    origin, so the host itself is part of the addressing scheme.
+  observed_methods:
+  - GET /api/method/brandConf
+  - GET /api/method/session
+  - POST /api/method/lostLogin
+  - GET /api/<tenant>/method/logout
+  - POST /api/<tenant>/method/setLang
+content_type:
+  request: application/json
+  response: application/json; charset=utf-8
+authentication:
+  style: cookie-session
+  detail: authentication/accenta-authentication.yml
+idempotency:
+  supported: unknown
+  header: null
+  note: >-
+    No idempotency key header, parameter or documented retry contract was observed on any reachable
+    endpoint, and none is described anywhere on the public surface. NO Idempotency pointer is emitted
+    in apis.yml — asserting one would credit Accenta with a contract it has not published.
+pagination:
+  style: unknown
+  note: >-
+    Not observable without an authenticated session. Publicly indexed fragments of the gated
+    effiPilot reference describe a measures resource whose series are retrieved through GET
+    parameters, but the pagination contract itself is not published.
+filtering:
+  style: json-in-query-param
+  params:
+  - name: filters
+    location: query
+    encoding: JSON string
+    note: >-
+      Observed on GET /api/method/session in the login application, which serialises a filter object
+      with JSON.stringify and passes it as a single `filters` query parameter.
+versioning:
+  scheme: none-in-url
+  note: >-
+    No version segment appears in the API path (/api/method/..., not /api/v1/method/...). The
+    provider versions the documentation instead — the publicly indexed reference is titled
+    "documentation API effiPilot 2.16.3" — so the API version is a property of the deployed tenant,
+    not of the request. See lifecycle/accenta-lifecycle.yml.
+error_envelope:
+  shape: '{"message": string}'
+  extended_shape: '{"message": string, "error": string, "statusCode": integer}'
+  problem_json: false
+  rfc9457: false
+  detail: errors/accenta-error-codes.yml
+rate_limit_signaling:
+  headers_observed: []
+  note: >-
+    No X-RateLimit-*, RateLimit-* or Retry-After header was returned on any observed response. See
+    rate-limits/accenta-rate-limits.yml.
+request_tracing:
+  request_id_header: null
+  note: No correlation or request-id header was observed on any response.
+cors:
+  access-control-allow-origin: http://localhost
+  access-control-allow-credentials: 'true'
+  note: >-
+    The allow-origin value returned to an anonymous cross-origin-less request is the literal
+    http://localhost, i.e. the surface is not designed for arbitrary browser origins.
+security_headers:
+  hsts: true
+  hsts_max_age: 31536000
+  content_security_policy_report_only: true
+  referrer_policy: strict-origin-when-cross-origin
+  detail: security/accenta-domain-security.yml
+webhooks:
+  documented: unknown
+  note: >-
+    No webhook or event surface is described on any public Accenta page, and no AsyncAPI document is
+    published. No AsyncAPI or Webhooks pointer is emitted.
+x-evidence:
+- url: https://app.accenta.ai/api/method/brandConf
+  http_status: 200
+  fetched: '2026-08-17'
+- url: https://app.accenta.ai/api/
+  http_status: 404
+  fetched: '2026-08-17'
+- url: https://app.accenta.ai/api/v3/api-docs
+  http_status: 404
+  fetched: '2026-08-17'

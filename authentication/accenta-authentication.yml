@@ -1,0 +1,62 @@
+generated: '2026-08-17'
+method: probed
+source: https://app.accenta.ai/login/ (public Angular login application) + live probes of https://app.accenta.ai/api/
+docs: https://app.accenta.ai/login/?redirectTo=api%2Fdoc
+note: >-
+  There is no OpenAPI document to derive securitySchemes from, so this profile was established by
+  probing the effiPilot platform API and reading the provider's own publicly served login
+  application. The model is a server-side session cookie, not a bearer token or API key: the login
+  app calls the API with credentials attached to the request (withCredentials) and reads the session
+  from GET /api/method/session. Nothing in the public surface documents a machine-to-machine
+  credential — no API-key header, no OAuth 2.0 authorization server, no OIDC discovery document (see
+  well-known/accenta-well-known.yml, where every /.well-known/ path missed). Whether effiPilot
+  offers a token grant for programmatic clients can only be answered from the gated API reference at
+  /api/doc.
+summary:
+  types:
+  - cookie-session
+  api_key_in: []
+  oauth2_flows: []
+  machine_to_machine_credential_documented: false
+schemes:
+- name: effiPilotSession
+  type: apiKey
+  in: cookie
+  description: >-
+    Session established by the effiPilot login application and carried on subsequent /api/method/*
+    calls as a cookie. Observed in the provider's own login bundle, which issues every API call with
+    withCredentials: true and resolves the current principal via GET /api/method/session.
+  sources:
+  - https://app.accenta.ai/login/main-JKA2JTKB.js
+  evidence:
+  - method_endpoint: GET https://app.accenta.ai/api/method/session
+    note: session read used by the login app; requires the cookie
+  - method_endpoint: GET https://app.accenta.ai/api/<tenant>/method/logout
+    note: session teardown observed in the login app
+  - method_endpoint: POST https://app.accenta.ai/api/method/lostLogin
+    note: anonymous password-recovery method observed in the login app
+anonymous_endpoints:
+- endpoint: GET https://app.accenta.ai/api/method/brandConf
+  status: 200
+  content_type: application/json
+  note: >-
+    Verified reachable with no credentials. Returns tenant branding, the Accenta SAS legal entity
+    block, consent/EULA versions and theme colours. This is the only unauthenticated method observed.
+observed_response_headers:
+  access-control-allow-credentials: 'true'
+  access-control-allow-origin: http://localhost
+  referrer-policy: strict-origin-when-cross-origin
+  content-security-policy-report-only: present
+  x-powered-by: PHP/8.0.30
+  server: nginx/1.22.1
+x-evidence:
+- url: https://app.accenta.ai/api/method/brandConf
+  http_status: 200
+  fetched: '2026-08-17'
+- url: https://app.accenta.ai/api/doc
+  http_status: 404
+  fetched: '2026-08-17'
+  note: 'anonymous request returns {"message":"Route not found"}; the route is only served to a logged-in session'
+- url: https://app.accenta.ai/login/
+  http_status: 200
+  fetched: '2026-08-17'

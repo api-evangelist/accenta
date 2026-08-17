@@ -1,0 +1,34 @@
+generated: '2026-08-17'
+method: searched
+source: https://www.accenta.ai/en/ + https://www.accenta.ai/en/contact-us/ + probes of /pricing/, /tarifs/, /en/pricing/, /prix/
+plan_count: 0
+note: >-
+  Accenta publishes no plans, tiers or prices. There is no pricing page in either language and none in
+  the sitemap; the entire commercial path is a contact form plus a phone number. This is expected for
+  the business model — Accenta sells building-scale energy and carbon projects (audit, design,
+  geothermal/geostorage installation, operation, financing and performance contracts) alongside the
+  effiPilot platform, priced per estate under contract. There is no self-serve signup and no
+  developer plan for the API: the login page at app.accenta.ai/login/ authenticates existing
+  customers only.
+plans: []
+commercial_model:
+  self_serve: false
+  contact_sales_only: true
+  contact_url: https://www.accenta.ai/en/contact-us/
+  contact_phone: '+33 (0)3 51 08 11 63'
+  support_email: support@accenta.ai
+  contract_types_named_publicly:
+  - Performance contract (energy/CO2 guarantees)
+  - Financing / third-party investment on the installation
+  note: >-
+    Contact phone and support email were read from the platform's own anonymous
+    /api/method/brandConf response, which publishes them as tenant branding.
+pricing_page_probes:
+- url: https://www.accenta.ai/pricing/
+  status: 404
+- url: https://www.accenta.ai/en/pricing/
+  status: 404
+- url: https://www.accenta.ai/tarifs/
+  status: 404
+- url: https://www.accenta.ai/prix/
+  status: 404

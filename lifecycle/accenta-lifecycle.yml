@@ -1,0 +1,79 @@
+generated: '2026-08-17'
+method: searched
+source: https://www.accenta.ai/ + https://app.accenta.ai/login/ + live probes of accenta.ai
+note: >-
+  Accenta publishes no versioning policy, no deprecation policy, no SLA document and no status page
+  on any public surface. The only version signal available is the title of the gated API reference,
+  "documentation API effiPilot 2.16.3", which is indexed publicly by search engines even though the
+  page itself now requires a customer session. NO StatusPage and NO Deprecation pointer is emitted in
+  apis.yml — neither exists.
+versioning:
+  scheme: none-in-url
+  current: 2.16.3
+  current_source: >-
+    Public search-engine index of the effiPilot API reference page title ("documentation API
+    effiPilot 2.16.3"). The live page is gated, so this version could not be confirmed against a
+    200 response.
+  docs: https://app.accenta.ai/login/?redirectTo=api%2Fdoc
+  note: >-
+    No version segment in the request path; each customer tenant runs its own deployment on the
+    wildcard *.accenta.ai origin, so the effective API version is a property of the tenant.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  policy_published: false
+sla:
+  url: null
+  uptime_target: null
+  note: >-
+    Accenta sells energy- and carbon-performance guarantees on the physical installation (marketing
+    claims of up to -80% energy and -95% CO2 with performance contracts), but publishes no software
+    availability SLA for the effiPilot platform.
+status_page: null
+status_page_probes:
+- url: https://status.accenta.ai/
+  status: 200
+  note: >-
+    NOT a status page. *.accenta.ai is a wildcard that resolves every label to the effiPilot login
+    application, so this host redirects to /login/ exactly like a nonsense label does. Confirmed by
+    probing https://zzz-not-real-9q8w7e.accenta.ai/, which also returns the login app.
+- url: https://www.accenta.ai/status/
+  status: 404
+- url: https://www.accenta.ai/en/status/
+  status: 404
+changelog:
+  url: null
+  probes:
+  - url: https://www.accenta.ai/changelog/
+    status: 404
+  - url: https://www.accenta.ai/release-notes/
+    status: 404
+  note: >-
+    No dated changelog or release-notes page is published. The platform does version its legal
+    documents (effiPilot EULA and RGPD notice, both v2.0 dated 2026-06-02, served from Accenta's
+    OVH public storage), which is the only dated release signal on the public surface.
+legal_document_versions:
+- document: Contrat de Licence Utilisateur Final (effiPilot EULA)
+  version: v2.0
+  dated: '2026-06-02'
+  url: https://storage.sbg.cloud.ovh.net/v1/AUTH_3d9cbc20c59c4c77a70475ce27cd4ecb/Images%20publiques%20effiPilot/Contrat_Licence_Utilisateur_Final_v200_20260602.pdf
+  status: 200
+- document: RGPD — collecte et utilisation des donnees personnelles
+  version: v2.0
+  dated: '2026-06-02'
+  url: https://storage.sbg.cloud.ovh.net/v1/AUTH_3d9cbc20c59c4c77a70475ce27cd4ecb/Images%20publiques%20effiPilot/RGPD_Collecte_et_utilisation_donnees_personnelles_v200_20260602.pdf
+  status: 200
+deprecated_operations: []
+domain_lifecycle:
+  note: >-
+    effiPilot was acquired by Accenta in 2020 and the brand has since been folded into the parent
+    domain: every effipilot.com host now 301s to the matching accenta.ai host (app.effipilot.com ->
+    app.accenta.ai, demo.effipilot.com -> demo.accenta.ai). The old public API documentation URLs
+    still indexed under effipilot.com therefore resolve to accenta.ai and then 404.
+  evidence:
+  - url: https://app.effipilot.com/api/doc/
+    status: 301
+    redirects_to: https://app.accenta.ai/api/doc/
+  - url: https://demo.effipilot.com/api/doc/index.html
+    status: 301
+    redirects_to: https://demo.accenta.ai/api/doc/index.html

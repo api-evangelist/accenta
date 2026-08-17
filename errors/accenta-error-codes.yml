@@ -1,0 +1,70 @@
+generated: '2026-08-17'
+method: probed
+source: live probes of https://app.accenta.ai/api/ and https://demo.accenta.ai/api/
+format: vendor-json
+rfc9457: false
+note: >-
+  Accenta publishes no error reference on any public page, and the effiPilot API reference is behind
+  the customer login, so this catalog is limited to error envelopes actually observed on the wire.
+  Two distinct envelopes were returned by the platform, which indicates more than one service behind
+  the same nginx front door. Responses are plain JSON, not application/problem+json, so the surface
+  does not implement RFC 9457. Only observed entries are listed; the full error taxonomy is not
+  public.
+envelope:
+  primary:
+    fields:
+    - message
+    example: '{"message":"Route not found"}'
+  secondary:
+    fields:
+    - message
+    - error
+    - statusCode
+    example: '{"message":"Cannot GET /api/v3/api-docs","error":"Not Found","statusCode":404}'
+  content_type: application/json; charset=utf-8
+problems:
+- status: 404
+  message: Route not found
+  envelope: primary
+  meaning: >-
+    The requested path is not a registered method on the effiPilot API for this request context.
+    Returned both for genuinely unknown methods and for the /api/doc reference route when no
+    authenticated session is present, so a 404 here does not distinguish "does not exist" from
+    "not visible to you".
+  observed_on:
+  - GET https://app.accenta.ai/api/
+  - GET https://app.accenta.ai/api/doc
+  - GET https://app.accenta.ai/api/health
+  - GET https://demo.accenta.ai/api/openapi.yaml
+- status: 404
+  message: Cannot GET <path>
+  error: Not Found
+  status_code_field: 404
+  envelope: secondary
+  meaning: >-
+    Framework-level not-found from a second service behind the same host, echoing the HTTP method and
+    path. Distinct from the primary envelope above.
+  observed_on:
+  - GET https://app.accenta.ai/api/v3/api-docs
+- status: 403
+  message: null
+  envelope: html
+  meaning: >-
+    nginx returns an HTML 403 for the whole /.well-known/ prefix on the platform hosts — an
+    infrastructure denial, not a JSON API error.
+  observed_on:
+  - GET https://app.accenta.ai/.well-known/security.txt
+not_captured:
+  authenticated_errors: true
+  note: >-
+    Validation, authorization and business-rule errors cannot be observed without customer
+    credentials. Nothing here should be read as the complete effiPilot error taxonomy.
+x-evidence:
+- url: https://app.accenta.ai/api/
+  http_status: 404
+  content_type: application/json; charset=utf-8
+  fetched: '2026-08-17'
+- url: https://app.accenta.ai/api/v3/api-docs
+  http_status: 404
+  content_type: application/json; charset=utf-8
+  fetched: '2026-08-17'

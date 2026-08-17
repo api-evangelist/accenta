@@ -1,0 +1,71 @@
+generated: '2026-08-17'
+method: searched
+source: registry.npmjs.org, pypi.org, rubygems.org, crates.io, api.nuget.org, search.maven.org, pkg.go.dev, play.google.com, itunes.apple.com
+package_count: 1
+sdk_count: 0
+note: >-
+  Accenta publishes NO client libraries in any public package registry. Searches for "accenta" and
+  "effipilot" returned no first-party SDK on npm, PyPI, RubyGems, crates.io, NuGet, Maven Central or
+  pkg.go.dev. The one genuinely first-party distributed artifact is the effiPilot Android app on
+  Google Play, published by "Accenta.ai" — an end-user application, not a developer SDK, so NO SDKs
+  pointer is emitted in apis.yml and sdk_count stays 0.
+packages:
+- language: null
+  registry: google-play
+  name: ai.accenta.mobile
+  display_name: effipilot
+  publisher: Accenta.ai
+  url: https://play.google.com/store/apps/details?id=ai.accenta.mobile
+  install: Install "effipilot" from Google Play
+  official: true
+  kind: mobile-app
+  version: '1.12'
+  published: null
+  note: >-
+    Version 1.12 read from the Google Play listing on 2026-08-17. Google Play publishes no
+    machine-readable release-date field for this listing, so `published` is null — checked, nothing
+    to record. Publisher name on the store page is "Accenta.ai", which is what makes this
+    first-party. This is the customer-facing effiPilot mobile client; it is not a library a developer
+    can build against.
+registry_probes:
+- registry: npm
+  query: effipilot
+  results: 0
+- registry: npm
+  query: accenta
+  results: 1
+  note: >-
+    The only hit is @accenta/npm-dummy 1.0.0 (published 2021-02-22), described by its own author as
+    "A dummy package to test public registry", with no repository field and no link to Accenta SAS.
+    Scope-name coincidence with unverifiable ownership — deliberately NOT recorded as an Accenta
+    package.
+- registry: pypi
+  query: accenta
+  status: 404
+- registry: pypi
+  query: effipilot
+  status: 404
+- registry: apple-app-store
+  query: effipilot
+  results: 0
+  note: iTunes search returned five unrelated aviation apps; no effiPilot iOS app was found.
+- registry: github
+  query: org accenta / Accenta-ai
+  note: >-
+    Both github.com/accenta (created 2024-01-29) and github.com/Accenta-ai (created 2022-12-14)
+    exist and are empty — 0 public repositories, no description, no blog URL, no verified domain. Ownership
+    by Accenta SAS cannot be established from the public metadata, so NO GitHubOrganization pointer
+    is emitted.
+x-evidence:
+- url: https://registry.npmjs.org/-/v1/search?text=effipilot
+  http_status: 200
+  fetched: '2026-08-17'
+- url: https://pypi.org/pypi/effipilot/json
+  http_status: 404
+  fetched: '2026-08-17'
+- url: https://play.google.com/store/apps/details?id=ai.accenta.mobile
+  http_status: 200
+  fetched: '2026-08-17'
+- url: https://api.github.com/orgs/accenta
+  http_status: 200
+  fetched: '2026-08-17'
