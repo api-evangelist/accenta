@@ -1,0 +1,21 @@
+{
+  "repo": "accenta",
+  "feeds": [
+    {
+      "source": "https://www.accenta.ai/en/contact-us/",
+      "feed_url": "https://www.accenta.ai/en/contact-us/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
+    },
+    {
+      "source": "https://www.accenta.ai/articles/",
+      "feed_url": "https://www.accenta.ai/articles/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
+    }
+  ],
+  "post_count": 0,
+  "fetched": "2026-08-22T20:20:02Z"
+}
