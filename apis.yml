@@ -11,6 +11,17 @@ description: 'Accenta is a French energy and carbon performance company for real
   acquired in 2020, delivered as a per-customer tenant on accenta.ai with a web application, an
   Android app and an HTTP API whose reference documentation sits behind the customer login.'
 url: https://raw.githubusercontent.com/api-evangelist/accenta/refs/heads/main/apis.yml
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://www.accenta.ai/app/uploads/2020/09/og_fb.jpg
 x-type: company
 x-source: serena-portfolio
