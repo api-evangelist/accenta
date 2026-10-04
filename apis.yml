@@ -55,7 +55,7 @@ tags:
 - Sustainability
 - Energy Management
 - Artificial Intelligence
-- Real-Estate
+- Real Estate
 - IoT
 - France
 tags_raw:
@@ -73,6 +73,7 @@ tags_raw:
 - Real Estate
 - IoT
 - France
+- Real-Estate
 apis:
 - name: effiPilot Platform API
   description: 'The HTTP API behind Accenta''s effiPilot building-energy platform. It is an
