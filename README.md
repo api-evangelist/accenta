@@ -64,6 +64,101 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Accenta is a company surfaced as a portfolio company of serena and added to the API Evangelist network as a stub for enrichment. Sector: ai-data. This profile is a lead awaiting the enrichment pipeline.
+Accenta is a French energy and carbon performance company for real estate portfolios, founded in 2016 and headquartered in Boulogne-Billancourt. It combines AI-driven building control (an intelligent building management system plus an Accenta Communication Box for sites with no BMS) with low-carbon heat and cold production built on shallow geothermal energy, inter-seasonal geostorage, heat pumps and solar, and it wraps the whole package in audit, design, build, operate, financing and performance-contract services. Accenta says it manages roughly 10 million square metres of real estate for owners such as Airbus, Prologis, Icade, Redevco and Decathlon, targeting energy reductions up to 80% and CO2 reductions up to 95%. Its software platform is effiPilot, acquired in 2020, delivered as a per-customer tenant on accenta.ai with a web application, an Android app and an HTTP API whose reference documentation sits behind the customer login.
 
-Source: portfolio company of [serena](https://github.com/api-evangelist/serena) — https://www.accenta.ai/
+**Areas:** Company · Ai Data · Energy · Buildings · Smart Buildings · Building Management · Geothermal · Decarbonization · Sustainability · Energy Management · Artificial Intelligence · Real Estate
+
+## Accenta on APIs.io
+
+Everything profiled for Accenta is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/accenta/](https://apis.io/providers/accenta/)** — or go straight to one of the APIs or properties below.
+
+### APIs (1)
+
+- [effiPilot Platform API](https://apis.io/apis/accenta/effipilot-platform-api/) — The HTTP API behind Accenta's effiPilot building-energy platform. It is an RPC-style JSON surface — requests take the form /api/method/<methodName> — served…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Accenta Authentication](https://apis.io/security/accenta/accenta-authentication/)
+- [Accenta Domain Security](https://apis.io/security/accenta/accenta-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Accenta Plans Pricing](https://apis.io/plans/accenta/accenta-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Accenta Rate Limits](https://apis.io/rate-limits/accenta/accenta-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.accenta.ai/)
+- [Support](https://www.accenta.ai/en/contact-us/)
+- [Blog](https://www.accenta.ai/articles/)
+- [Compliance](https://storage.sbg.cloud.ovh.net/v1/AUTH_3d9cbc20c59c4c77a70475ce27cd4ecb/Images%20publiques%20effiPilot/RGPD_Collecte_et_utilisation_donnees_personnelles_v200_20260602.pdf)
+- [Terms of service](https://storage.sbg.cloud.ovh.net/v1/AUTH_3d9cbc20c59c4c77a70475ce27cd4ecb/Images%20publiques%20effiPilot/Contrat_Licence_Utilisateur_Final_v200_20260602.pdf)
+- [Privacy policy](https://www.accenta.ai/politique-de-confidentialite/)
+
+## API Evangelist rating
+
+**Kin Score 21.3** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 67.0 |
+| Contract quality | 0.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 0.0 |
+| Developer ergonomics | 19.0 |
+| Access clarity | 35.5 |
+
+**Agent readiness 7.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 23.1** — Energy & Utilities
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/accenta/](https://apis.io/providers/accenta/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Accenta: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/accenta/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
